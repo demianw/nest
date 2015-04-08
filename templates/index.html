@@ -28,30 +28,59 @@
 {% endblock header %}
 
 {% block content %}
-    {% if DEFAULT_PAGINATION %}    
-    <div class="archive-container">
-        <div class="container content archive">
-            <h2><a href="{{ SITEURL }}/{{ articles_page.url }}">{{ NEST_INDEX_CONTENT_TITLE }} {% if articles_page.has_previous() %}<small>- page {{ articles_page.number }}</small>{% endif %}</a></h2>
-            <dl class="dl-horizontal">
-                {% for article in articles_page.object_list %}
-                <dt>{{ article.locale_date}}</dt>
-                <dd><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></dd>
-                {% endfor %}
-            </dl>
+    {% if DEFAULT_PAGINATION %} 
+      {% for pti in PAGES_TO_INCLUDE_IN_INDEX %}
+       {% for page in pages %}
+        {% if page.title == pti %}
+            <div class="archive-container">
+              <div class="container content archive">
+                {{ page.content }}
+              </div>
+            </div>
+        {% endif %}
+       {% endfor %}
+      {% endfor %}
+      {% include "categories_content.html" %}
+      {% if INCLUDE_LAST_POSTS %}   
+        <div class="archive-container">
+            <div class="container content archive">
+                <h2><a href="{{ SITEURL }}/{{ articles_page.url }}">{{ NEST_INDEX_CONTENT_TITLE }} {% if articles_page.has_previous() %}<small>- page {{ articles_page.number }}</small>{% endif %}</a></h2>
+                <dl class="dl-horizontal">
+                    {% for article in articles_page.object_list %}
+                    <dt>{{ article.locale_date}}</dt>
+                    <dd><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></dd>
+                    {% endfor %}
+                </dl>
+            </div>
         </div>
-    </div>
+      {% endif %}
     {% include 'pagination.html' %}
     {% else %}
-    <div class="archive-container">
-        <div class="container content archive">
-            <h2><a href="{{ SITEURL }}/">{{ NEST_INDEX_CONTENT_TITLE }}</a></h2>
-            <dl class="dl-horizontal">
-                {% for article in articles %}
-                <dt>{{ article.locale_date}}</dt>
-                <dd><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></dd>
-                {% endfor %}
-            </dl>
-        </div>
-    </div>
+      {% for pti in PAGES_TO_INCLUDE_IN_INDEX %}
+       {% for page in pages %}
+        {% if page.title == pti %}
+            <div class="archive-container">
+              <div class="container content archive">
+                {{ page.content }}
+              </div>
+            </div>
+        {% endif %}
+       {% endfor %}
+      {% endfor %}
+      {% include "categories_content.html" %}
+      {% if INCLUDE_LAST_POSTS %}   
+      <div class="archive-container">
+          <div class="container content archive">
+              <h2><a href="{{ SITEURL }}/">{{ NEST_INDEX_CONTENT_TITLE }}</a></h2>
+              <dl class="dl-horizontal">
+                  {% for article in articles %}
+                  <dt>{{ article.locale_date}}</dt>
+                  <dd><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></dd>
+                  {% endfor %}
+              </dl>
+          </div>
+      </div>
+      {% endif %}
     {% endif %}
 {% endblock content %}
+

@@ -1,0 +1,8 @@
+<h1 class="content-subhead">
+  {% block title %}{{ page.title|striptags }} {% endblock title %}
+</h1>
+{% block content %}
+          <div class="posts">
+            {{ page.content }}
+          </div>
+{% endblock %}
