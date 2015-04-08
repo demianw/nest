@@ -5,9 +5,11 @@
         <dl class="dl-horizontal">
             {% for article in articles %}
               {% if article.category == 'Selected publications' %}
+                <div class="bib">
                 <dt>{{ article.bib_journal }} <p> {{ article.bib_year }}</dt>
                 <dd><a href="{{ article.bib_url }}" target="_blank">{{ article.title }}</a> 
                 </dd>
+                </div>
               {% elif article.category == 'Software' %}
                 <dt>
                   <a href="{{ article.docs }}" target="_blank"  title="{{article.description}}">
