@@ -79,8 +79,12 @@
         {% block headerstyle %}
         {% endblock headerstyle %}
 
-            <!-- Static navbar -->
+            <!-- Header -->
+            {% block header %}
+            {% endblock header %}
+            <!-- /Header -->
 
+            <!-- Static navbar -->
             {% if HEADER_NAV %}
             <div class="container">
                 <div class="header-nav">
@@ -88,13 +92,13 @@
                         <a class="pull-left" href="{{ SITEURL }}/">
                           {% if NEST_HEADER_LOGO %}
                             <img class="mr20" src="{{ SITEURL }} {{NEST_HEADER_LOGO or "/logo.svg" }}" alt="logo">
-                          {% endif %}
                             {{ SITENAME }}
+                          {% endif %}
                           </a>
                     </div>
                     <div class="nav pull-right">
                         {% for title, link in MENUITEMS %}
-                            <a href="{{ SITEURL }}{{ link }}">{{ title }}</a>
+                          <a href="{{ SITEURL }}/{{ link }}">{{ title }}</a>
                         {% endfor %}
                         {% if DISPLAY_PAGES_ON_MENU %}
                         {% for pg in PAGES %}
@@ -107,10 +111,7 @@
             {% endif %}
             <!-- /Static navbar -->
 
-            <!-- Header -->
-            {% block header %}
-            {% endblock header %}
-            <!-- /Header -->
+
 
         </div>
         <!-- /Header -->
