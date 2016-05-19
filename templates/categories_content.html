@@ -7,7 +7,7 @@
               {% if article.category == 'Selected publications' %}
                 <div class="bib">
                 <dt>{{ article.bib_journal }} <p> {{ article.bib_year }}</dt>
-                <dd><a href="{{ article.bib_url }}" target="_blank">{{ article.title }}</a> 
+                <dd><a href="http://scholar.google.com/scholar?q={{ "author:wassermann '%s'" % article.title | urlencode }}" target="_blank">{{ article.title }}</a> 
                 </dd>
                 </div>
               {% elif article.category == 'Software' %}
