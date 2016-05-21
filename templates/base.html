@@ -11,6 +11,10 @@
 
         <title>{% block title %}{{ SITENAME }}{% endblock title %}</title>
 
+        <!-- JavaScript -->
+
+        <!-- /JavaScript -->
+
         <!-- Stylesheets -->
         {% if NEST_CSS_MINIFY %}
         <link href="{{ SITEURL }}/theme/css/all.min.css" rel="stylesheet">
@@ -73,7 +77,7 @@
     {% endblock head %}
     </head>
 
-    <body>
+    <body id="top">
 
         <!-- Header -->
         {% block headerstyle %}
@@ -86,36 +90,35 @@
 
             <!-- Static navbar -->
             {% if HEADER_NAV %}
-            <div class="container">
-                <div class="header-nav">
-                    <div class="header-logo">
-                        <a class="pull-left" href="{{ SITEURL }}/">
-                          {% if NEST_HEADER_LOGO %}
-                            <img class="mr20" src="{{ SITEURL }} {{NEST_HEADER_LOGO or "/logo.svg" }}" alt="logo">
-                            {{ SITENAME }}
+              <div class="header-nav" data-spy="affix" data-offset-top="150" data-offset-bottom="120">
+              <div class="container" >
+                  <div class="header-nav">
+                      <div class="header-logo">
+                          <a class="pull-left" href="{{ SITEURL }}/">
+                            {% if NEST_HEADER_LOGO %}
+                              <img class="mr20" src="{{ SITEURL }} {{NEST_HEADER_LOGO or "/logo.svg" }}" alt="logo">
+                              {{ SITENAME }}
+                            {% endif %}
+                            </a>
+                      </div>
+                      <div class="nav pull-right">
+                          {% for title, link in MENUITEMS %}
+                            <a href="{{ SITEURL }}/{{ link }}">{{ title }}</a>
+                          {% endfor %}
+                          {% if DISPLAY_PAGES_ON_MENU %}
+                          {% for pg in PAGES %}
+                              <a {% if pg == page %} class="active"{% endif %} href="{{ SITEURL }}/{{ pg.url }}">{{ pg.title }}</a>
+                          {% endfor %}
                           {% endif %}
-                          </a>
-                    </div>
-                    <div class="nav pull-right">
-                        {% for title, link in MENUITEMS %}
-                          <a href="{{ SITEURL }}/{{ link }}">{{ title }}</a>
-                        {% endfor %}
-                        {% if DISPLAY_PAGES_ON_MENU %}
-                        {% for pg in PAGES %}
-                            <a {% if pg == page %} class="active"{% endif %} href="{{ SITEURL }}/{{ pg.url }}">{{ pg.title }}</a>
-                        {% endfor %}
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
+                      </div>
+                  </div>
+              </div>
+              </div>
             {% endif %}
             <!-- /Static navbar -->
 
-
-
         </div>
         <!-- /Header -->
-
 
         <!-- Content -->
         {% block content %}
@@ -176,5 +179,7 @@
             </div>
         </div>
         <!-- /Footer -->
+        <script src="{{ SITEURL }}/theme/js/jquery.min.js"></script>
+        <script src="{{ SITEURL }}/theme/js/bootstrap.min.js"></script>
     </body>
 </html>

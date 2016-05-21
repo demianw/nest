@@ -2,7 +2,7 @@
     <div class="container content archive">
             {% for category, articles in categories %}
               {% if category in INCLUDE_CATEGORIES_IN_MAIN_PAGE %}
-              <h2 id="{{ category|urlencode }}">{{ category|capitalize }}</h2>
+              <h2 id="{{ category|urlencode }}" style="padding-top: 50px; margin-top: -50px;">{{ category|capitalize }}</h2>
               <dl class="dl-horizontal">
                   {% for article in articles %}
                     {% if article.category == 'Selected publications' %}
