@@ -203,8 +203,11 @@
         <!-- /Footer -->
         <script src="{{ SITEURL }}/theme/js/jquery.min.js"></script>
         <script src="{{ SITEURL }}/theme/js/bootstrap.min.js"></script>
+  {% include 'cookieconsent.html' %}
+  <!--
   {% if PIWIK_URL %}
-    <iframe style="border: 0; height: 200px; width: 600px;" src="http://piwik.inria.fr/index.php?module=CoreAdminHome&action=optOut&language=fr" width="300" height="150"></iframe>
+    <iframe style="border: 0; height: 200px; width: 600px;" src="http://piwik.inria.fr/index.php?module=CoreAdminHome&action=optOut&language=en" width="300" height="150"></iframe>
   {% endif %}
+  -->
     </body>
 </html>
