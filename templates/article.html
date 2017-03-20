@@ -30,7 +30,11 @@
 
 {% block content %}
     <div class="container content">
-        <h1> {{ article.title }} </h1>
+        {% if article.category == 'contracts' %}
+          <h1> {{ article.title }} ({{ article.period }}) </h1>
+        {% else %} 
+          <h1> {{ article.title }} </h1>
+        {% endif %}
         {{ article.content }}
 
         {% if article.related_posts %}

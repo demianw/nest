@@ -11,19 +11,23 @@
                       <dd><a href="http://scholar.google.com/scholar?q={{ "author:wassermann '%s'" % article.title | urlencode }}" target="_blank">{{ article.title }}</a> 
                       </dd>
                       </div>
-                    {% elif article.category == 'Software' %}
+                    {% elif article.category == 'software' %}
                       <dt>
+                        {% if article.docs %}
                         <a href="{{ article.docs }}" target="_blank"  title="{{article.description}}">
                             <i class="fa fa-book fa-2x"></i>
                           </a>
+                        {% endif %}
+                        {% if article.github %}
                           <a href="{{ article.github }}" target="_blank" title="{{article.description}}">
                             <i class="fa fa-github fa-2x"></i>
                           </a>
+                        {% endif %}
                       </dt>
                       <dd><span title="{{article.description}}"> {{ article.title }} </span></dd>
                     {% else %}
-                      <dt>{{ article.locale_date}}</dt>
-                      <dd><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></dd>
+                    <dt>{% if article.locale_date %} {{ article.locale_date }} {% endif %}</dt>
+                      <dd><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}{{ article.category }}</a></dd>
                     {% endif %}
               {% endfor %}
               </dl>
