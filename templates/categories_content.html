@@ -5,13 +5,13 @@
               <h2 id="{{ category|urlencode }}" style="padding-top: 50px; margin-top: -50px;">{{ category|capitalize }}</h2>
               <dl class="dl-horizontal">
                   {% for article in articles %}
-                    {% if article.category == 'Selected publications' %}
+                    {% if article.category|lower == 'selected publications' %}
                       <div class="bib">
                       <dt>{{ article.bib_journal }} <p> {{ article.bib_year }}</dt>
                       <dd><a href="http://scholar.google.com/scholar?q={{ "author:wassermann '%s'" % article.title | urlencode }}" target="_blank">{{ article.title }}</a> 
                       </dd>
                       </div>
-                    {% elif article.category == 'software' %}
+                    {% elif article.category|lower == 'software' %}
                       <dt>
                         {% if article.docs %}
                         <a href="{{ article.docs }}" target="_blank"  title="{{article.description}}">
@@ -26,7 +26,7 @@
                       <dd><span title="{{article.description}}"> {{ article.title }} </span></dd>
                     {% else %}
                     <dt>{% if article.locale_date %} {{ article.locale_date }} {% endif %}</dt>
-                      <dd><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}{{ article.category }}</a></dd>
+                    <dd><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}{{ article.category }}</a></dd>
                     {% endif %}
               {% endfor %}
               </dl>
