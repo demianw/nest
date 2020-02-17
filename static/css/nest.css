@@ -430,6 +430,10 @@ h4:after {
     color: #356689;
     text-decoration: None;
 }
+
+.archive .bib i{
+    color:#eb2344
+}
 /* Styling */
 
 blockquote{

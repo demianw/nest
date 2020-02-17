@@ -9,6 +9,7 @@
                       <div class="bib">
                       <dt>{{ article.bib_journal }} <p> {{ article.bib_year }}</dt>
                       <dd><a href="http://scholar.google.com/scholar?q={{ "author:wassermann '%s'" % article.title | urlencode }}" target="_blank">{{ article.title }}</a> 
+                          <a href="{{ article.bib_pdf_url }}" target="_blank"><i class="fa fa-file-pdf-o fa-1px"></i> <a/>
                       </dd>
                       </div>
                     {% elif article.category|lower == 'software' %}
